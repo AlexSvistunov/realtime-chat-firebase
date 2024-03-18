@@ -1,11 +1,16 @@
-import { Button } from "@mui/material";
+
 import "./App.css";
-import CssBaseline from "@mui/material/CssBaseline";
+import AppRoutes from "./routes/AppRoutes";
+
+import { ROUTES } from "./routes/routes";
 
 function App() {
+
+
+
   return (
     <>
-      <Button variant="contained">Some text</Button>
+      <AppRoutes/>
     </>
   );
 }

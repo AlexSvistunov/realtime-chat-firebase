@@ -1,0 +1,16 @@
+.auth {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth__wrapper {
+    max-width: 600px;
+    width: 100%;
+    min-height: 450px;
+}
