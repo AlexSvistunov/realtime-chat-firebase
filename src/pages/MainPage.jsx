@@ -8,7 +8,7 @@ const MainPage = () => {
 
   return (
     <div>
-      <Header/>
+      <Header isAuthOpen={isAuthOpen} setIsAuthOpen={setIsAuthOpen}/>
       
       <Auth isAuthOpen={isAuthOpen} setIsAuthOpen={setIsAuthOpen}/>
       

@@ -1,4 +1,6 @@
 .auth {
+    opacity: 0;
+    visibility: hidden;
     position: fixed;
     top: 0;
     left: 0;
@@ -7,6 +9,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.auth.auth--open {
+    opacity: 1;
+    visibility: visible;
 }
 
 .auth__wrapper {
