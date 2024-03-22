@@ -1,8 +1,11 @@
-import React from 'react'
+import Register from "../components/Register/Register"
+
 
 const RegisterPage = () => {
   return (
-    <div>RegisterPage</div>
+    <>
+      <Register/>
+    </>
   )
 }
 

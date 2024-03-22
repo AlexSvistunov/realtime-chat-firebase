@@ -1,9 +1,24 @@
+import { useNavigate } from 'react-router-dom'
+import './Header.css'
 
-const Header = ({isAuthOpen, setIsAuthOpen}) => {
+import {ROUTES} from '../../routes'
+
+const Header = () => {
+
+  const navigate = useNavigate()
+
+  const openLoginPage = () => {
+    navigate(ROUTES.login)
+  }
+
+  const openRegisterPage = () => {
+    navigate(ROUTES.register)
+  }
+
   return (
-    <header style={{display: 'flex', justifyContent: 'flex-end', marginBottom: '20px'}}>
-      <button onClick={() => setIsAuthOpen(true)}>Войти</button>
-      <button onClick={() => setIsAuthOpen(true)}>Зарегаться</button>
+    <header className='header'>
+      <button onClick={openLoginPage}>Войти</button>
+      <button onClick={openRegisterPage}>Зарегаться</button>
     </header>
   )
 }

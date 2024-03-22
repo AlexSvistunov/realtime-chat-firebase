@@ -1,19 +1,12 @@
-import Header from "../components/Header/Header"
-import Auth from "../components/Auth/Auth"
-
-import { useState } from "react"
+import Header from "../components/Header/Header";
 
 const MainPage = () => {
-  const [isAuthOpen, setIsAuthOpen] = useState(false)
-
   return (
-    <div>
-      <Header isAuthOpen={isAuthOpen} setIsAuthOpen={setIsAuthOpen}/>
-      
-      <Auth isAuthOpen={isAuthOpen} setIsAuthOpen={setIsAuthOpen}/>
-      
-    </div>
-  )
-}
+    <>
+      <Header />
+      <div>КОНТЕНТ НАЧАЛА ПРИЛОЖЕНИЯ</div>
+    </>
+  );
+};
 
-export default MainPage
+export default MainPage;
