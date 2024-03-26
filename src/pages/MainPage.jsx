@@ -4,7 +4,6 @@ const MainPage = () => {
   return (
     <>
       <Header />
-      <div>КОНТЕНТ НАЧАЛА ПРИЛОЖЕНИЯ</div>
     </>
   );
 };
