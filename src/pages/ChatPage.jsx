@@ -4,10 +4,14 @@ import { useState } from "react";
 
 import { removeUser } from "../store/slices/userSlice";
 
-import { doc, setDoc } from "firebase/firestore"; 
+import { doc, setDoc, getDoc, getDocs, collection } from "firebase/firestore"; 
 import { db } from "../firebase/firebase";
 
 import { v4 as uuidv4 } from 'uuid';
+
+import { getMessages } from "../store/slices/messagesSlice";
+
+
 
 
 const ChatPage = () => {
@@ -32,6 +36,18 @@ const ChatPage = () => {
     }
   };
 
+  const messagesArray = useSelector((state) => state.message.messages)
+  console.log(messagesArray);
+
+  // const getMessages = async () => {
+
+  //   const querySnapshot = await getDocs(collection(db, 'messages'));
+
+  //   querySnapshot.forEach((doc) => {
+  //       console.log(doc.id, " => ", doc.data());
+  //   });
+  // }
+ 
   return (
     <>
       {isAuth ? (
@@ -73,7 +89,10 @@ const ChatPage = () => {
                   padding: "0 35px",
                 }}
               ></input>
-              <button onClick={createMessage}>Отправить</button>
+              <button onClick={() => {
+                createMessage()
+                getMessages()
+              }}>Отправить</button>
             </div>
           </div>
         </>
