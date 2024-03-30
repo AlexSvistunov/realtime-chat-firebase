@@ -20,6 +20,8 @@ const Login = () => {
       console.log(user);
       navigation('/chat')
       dispatch(setUser({email}))
+      localStorage.setItem('email', email)
+      localStorage.setItem('token', userCredential.user.uid)
       // ...
     })
     .catch((error) => {

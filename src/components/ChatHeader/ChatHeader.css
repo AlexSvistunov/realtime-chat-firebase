@@ -1,0 +1,11 @@
+.chat-header__inner {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}

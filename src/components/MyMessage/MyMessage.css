@@ -1,0 +1,21 @@
+.my-message {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 12px 7px 10px;
+  background-color: #007AFF;
+  border-radius: 15px;
+  max-width: 22%;
+  width: 100%;
+  color: white;
+  font-size: 23px;
+  min-height: 50px;
+  align-self: flex-end;
+
+}
+
+.my-message span {
+  display: inline-block;
+  align-self: flex-end;
+  font-size: 15px;
+}
