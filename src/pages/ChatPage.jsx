@@ -28,7 +28,7 @@ const ChatPage = () => {
       await setDoc(doc(db, "messages", id), {
         userEmail: email,
         message: inputValue,
-        date: new Date(),
+        date: new Date().toISOString(),
       });
 
       setInputValue("");
