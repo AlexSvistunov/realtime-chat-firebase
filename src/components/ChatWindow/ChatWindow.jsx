@@ -16,11 +16,14 @@ const ChatWindow = ({
   const {email} = useAuth()
   const dispatch = useDispatch();
 
+  const messageArrayFilter = messagesArray && [...messagesArray].sort((a,b) => new Date(a.date) - new Date(b.date))
+
+
   return (
     <>
       <div className="chat-window">
         <ul className="chat-window__list">
-          {messagesArray.map((el) => {
+          {messageArrayFilter.map((el) => {
             if(el.userEmail !== email) {
               return <Message messageText={el.message} email={el.userEmail} key={el.date}/>
             } else {
