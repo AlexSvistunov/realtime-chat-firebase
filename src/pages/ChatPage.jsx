@@ -6,6 +6,7 @@ import { removeUser } from "../store/slices/userSlice";
 
 import { doc, setDoc, getDoc, getDocs, collection } from "firebase/firestore";
 import { db } from "../firebase/firebase";
+import { onSnapshot } from "firebase/firestore";
 
 import { v4 as uuidv4 } from "uuid";
 
@@ -20,6 +21,18 @@ const ChatPage = () => {
 
   const logOut = () => {
     dispatch(removeUser());
+  };
+
+  const updates = async () => {
+    //   const querySnapshot = await getDocs(collection(db, 'messages'));
+
+    //   querySnapshot.forEach((doc) => {
+    //       console.log(doc.id, " => ", doc.data());
+    //   });
+
+    const unsub = onSnapshot(getDocs(collection(db, 'messages')), (doc) => {
+      console.log("Current data: ", doc.data());
+    });
   };
 
   const createMessage = async () => {
@@ -38,26 +51,26 @@ const ChatPage = () => {
   const messagesArray = useSelector((state) => state.message.messages);
   console.log(messagesArray);
 
-  // const getMessages = async () => {
-
-  //   const querySnapshot = await getDocs(collection(db, 'messages'));
-
-  //   querySnapshot.forEach((doc) => {
-  //       console.log(doc.id, " => ", doc.data());
-  //   });
-  // }
-
   useEffect(() => {
     dispatch(getMessages());
   }, [dispatch]);
+
+  useEffect(() => {
+    updates();
+  }, []);
 
   return (
     <>
       {isAuth ? (
         <>
-          <ChatHeader email={email} logOut={logOut}/>
+          <ChatHeader email={email} logOut={logOut} />
 
-          <ChatWindow messagesArray={messagesArray} inputValue={inputValue} setInputValue={setInputValue} createMessage={createMessage}/>
+          <ChatWindow
+            messagesArray={messagesArray}
+            inputValue={inputValue}
+            setInputValue={setInputValue}
+            createMessage={createMessage}
+          />
         </>
       ) : (
         <div>Не Авторизован</div>
