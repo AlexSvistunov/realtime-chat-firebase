@@ -22,7 +22,11 @@ export const getMessages = createAsyncThunk("messages/getMessages", async () => 
 const messagesSlice = createSlice({
   name: "messages",
   initialState,
-  reducers: {},
+  reducers: {
+    refreshMessages : (state, action) => {
+      state.messages = action.payload
+    }
+  },
   
   extraReducers: (builder) => {
     builder.addCase(getMessages.fulfilled, (state, action) => {
@@ -32,4 +36,5 @@ const messagesSlice = createSlice({
 });
 
 export default messagesSlice.reducer
+export const {refreshMessages} = messagesSlice.actions;
 

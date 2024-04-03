@@ -3,7 +3,7 @@ import './ChatBottom.css'
 
 import { getMessages } from '../../store/slices/messagesSlice';
 
-const ChatBottom = ({inputValue, setInputValue, createMessage}) => {
+const ChatBottom = ({inputValue, setInputValue, createMessage, updates}) => {
   const dispatch = useDispatch()
 
   return (
@@ -19,7 +19,6 @@ const ChatBottom = ({inputValue, setInputValue, createMessage}) => {
       <button className='chat-bottom__btn'
         onClick={() => {
           createMessage();
-          dispatch(getMessages());
         }}
       >
       </button>

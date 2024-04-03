@@ -14,26 +14,39 @@ import { getMessages } from "../store/slices/messagesSlice";
 import ChatHeader from "../components/ChatHeader/ChatHeader";
 import ChatWindow from "../components/ChatWindow/ChatWindow";
 
+import { query } from "firebase/firestore";
+import { refreshArray } from "../store/slices/realtimeMessagesSlice";
+import { refreshMessages } from "../store/slices/messagesSlice";
+
 const ChatPage = () => {
   const [inputValue, setInputValue] = useState("");
   const dispatch = useDispatch();
   const { isAuth, email } = useAuth();
 
+  
   const logOut = () => {
     dispatch(removeUser());
   };
 
-  const updates = async () => {
-    //   const querySnapshot = await getDocs(collection(db, 'messages'));
+  useEffect(() => {
+   dispatch(getMessages())
+  }, [])
+  
 
-    //   querySnapshot.forEach((doc) => {
-    //       console.log(doc.id, " => ", doc.data());
-    //   });
+  const q = query(collection(db, "messages"));
 
-    const unsub = onSnapshot(getDocs(collection(db, 'messages')), (doc) => {
-      console.log("Current data: ", doc.data());
+  const unsubscribe = onSnapshot(q, (querySnapshot) => {
+    const array = []
+    querySnapshot.forEach((doc) => {
+      console.log(doc.data());
+      array.push(doc.data())
+   
     });
-  };
+
+    dispatch(refreshMessages(array))
+
+
+  });
 
   const createMessage = async () => {
     if (inputValue) {
@@ -48,16 +61,8 @@ const ChatPage = () => {
     }
   };
 
-  const messagesArray = useSelector((state) => state.message.messages);
-  console.log(messagesArray);
-
-  useEffect(() => {
-    dispatch(getMessages());
-  }, [dispatch]);
-
-  useEffect(() => {
-    updates();
-  }, []);
+  // const messagesArray = useSelector((state) => state.message.messages);
+  // console.log(messagesArray);
 
   return (
     <>
@@ -66,10 +71,10 @@ const ChatPage = () => {
           <ChatHeader email={email} logOut={logOut} />
 
           <ChatWindow
-            messagesArray={messagesArray}
             inputValue={inputValue}
             setInputValue={setInputValue}
             createMessage={createMessage}
+
           />
         </>
       ) : (

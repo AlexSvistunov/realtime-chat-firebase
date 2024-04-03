@@ -2,8 +2,11 @@ import { useNavigate } from 'react-router-dom'
 import './Header.css'
 
 import {ROUTES} from '../../routes'
+import { useAuth } from '../../hooks/use-auth'
 
 const Header = () => {
+
+  const{isAuth} = useAuth()
 
   const navigate = useNavigate()
 
@@ -14,6 +17,7 @@ const Header = () => {
   const openRegisterPage = () => {
     navigate(ROUTES.register)
   }
+
 
   return (
     <header className='header'>

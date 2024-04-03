@@ -8,7 +8,6 @@ import ChatBottom from "../ChatBottom/ChatBottom";
 import { useAuth } from "../../hooks/use-auth";
 
 const ChatWindow = ({
-  messagesArray,
   inputValue,
   setInputValue,
   createMessage,
@@ -16,14 +15,22 @@ const ChatWindow = ({
   const {email} = useAuth()
   const dispatch = useDispatch();
 
-  const messageArrayFilter = messagesArray && [...messagesArray].sort((a,b) => new Date(a.date) - new Date(b.date))
+  const array = useSelector(state => state.realtimeMessages.realtimeMessages)
+  console.log(array);
+
+  const messages = useSelector(state => state.message.messages)
+  console.log(messages);
+  
+  const messageArrayFilter = messages && [...messages].sort((a,b) => new Date(a.date) - new Date(b.date))
+  
+
 
 
   return (
     <>
       <div className="chat-window">
         <ul className="chat-window__list">
-          {messageArrayFilter.map((el) => {
+          {messageArrayFilter && messageArrayFilter.map((el) => {
             if(el.userEmail !== email) {
               return <Message messageText={el.message} email={el.userEmail} key={el.date}/>
             } else {
