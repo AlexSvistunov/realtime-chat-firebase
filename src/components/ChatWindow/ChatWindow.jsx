@@ -15,17 +15,9 @@ const ChatWindow = ({
   const {email} = useAuth()
   const dispatch = useDispatch();
 
-  const array = useSelector(state => state.realtimeMessages.realtimeMessages)
-  console.log(array);
-
   const messages = useSelector(state => state.message.messages)
-  console.log(messages);
-  
   const messageArrayFilter = messages && [...messages].sort((a,b) => new Date(a.date) - new Date(b.date))
   
-
-
-
   return (
     <>
       <div className="chat-window">

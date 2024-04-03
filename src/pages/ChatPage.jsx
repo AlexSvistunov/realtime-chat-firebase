@@ -15,7 +15,6 @@ import ChatHeader from "../components/ChatHeader/ChatHeader";
 import ChatWindow from "../components/ChatWindow/ChatWindow";
 
 import { query } from "firebase/firestore";
-import { refreshArray } from "../store/slices/realtimeMessagesSlice";
 import { refreshMessages } from "../store/slices/messagesSlice";
 
 const ChatPage = () => {
@@ -61,8 +60,6 @@ const ChatPage = () => {
     }
   };
 
-  // const messagesArray = useSelector((state) => state.message.messages);
-  // console.log(messagesArray);
 
   return (
     <>
